@@ -1,0 +1,15 @@
+#include "iodefine.h"
+
+void iniWDT()
+{
+	WDT.TCSRWD.BIT.TCWE = 0;
+	
+	WDT.TCSRWD.BIT.TCSRWE = 0;	
+	WDT.TCSRWD.BIT.WDON = 0;
+	WDT.TCSRWD.BIT.WRST = 0;
+	WDT.TMWD.BIT.CKS = 0xF;
+	
+	WDT.TCSRWD.BIT.TCWE = 0;
+	WDT.TCSRWD.BIT.WDON = 0;
+
+}
