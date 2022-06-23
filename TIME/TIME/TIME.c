@@ -11,10 +11,7 @@
                   
 
 
-#include "led.h"
 #include "lcd.h"
-#include "ad.h"
-#include "timeV.h"
 
 void main(void);
 #ifdef __cplusplus
@@ -23,28 +20,55 @@ void abort(void);
 }
 #endif
 
+#define WAIT_LOOP_FOR_1MSEC   3500
+
+void waitTimeMS();
+
 void main(void)
 {
 
+	int h=0;
+    int m=0;
+    int s=0;
+
     InitLcd();
-    initAD();
-	InitLED();
-	initTimev();
 	
 	while(1){
 		//waitTimeMS(10);
-		getADVal();
+		s++;
+        waitTimeMS(1000);
+	    if(s == 60){
+	      	s = 0;
+	       	m++;
+       	}	
+	    if(m == 60){
+	      	m = 0;
+       		h++;
+       	}
+       	if(h == 24){
+	      	h = 0;
+        }
 		
     	LcdXY(1,1);
-		LcdPuts("RV2; ");	
-		putLCDNumber(4,(unsigned int)g_adRV2);
-
-		LcdXY(1,2);
-		LcdPuts("RV3; ");
-		putLCDNumber(4,(unsigned int)g_adRV3);	
-			
-		setLEDLevel((unsigned int)(g_adRV2<<8));
+		LcdPuts("h:");	
+		putLCDNumber(4,(unsigned int)h);
+		LcdPuts("m:");	
+		putLCDNumber(4,(unsigned int)m);
+		
+    	LcdXY(1,2);		
+		LcdPuts("s:");	
+		putLCDNumber(4,(unsigned int)s);
 	}
+}
+
+void waitTimeMS(unsigned int mSec)
+{
+	unsigned int loopCount1,loopCount2;
+    
+	for(loopCount1=0; loopCount1<mSec; loopCount1++){
+	    for(loopCount2=0; loopCount2 < WAIT_LOOP_FOR_1MSEC; loopCount2++);   
+    }
+    
 }
 
 #ifdef __cplusplus
