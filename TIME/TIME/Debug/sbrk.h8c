@@ -1,0 +1,9 @@
+-cpu=300HN
+-lang=c
+-object="C:\WorkSpace\TIME_A_V_W\TIME\TIME\Debug\sbrk.obj"
+-outcode=sjis
+-debug
+-nolist
+-chgincpath
+"C:\WorkSpace\TIME_A_V_W\TIME\TIME\sbrk.c"
+-nologo

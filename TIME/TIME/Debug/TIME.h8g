@@ -1,0 +1,4 @@
+-cpu=300HN
+-output="C:\WorkSpace\TIME_A_V_W\TIME\TIME\Debug\TIME.lib"
+-head=runtime,new,stdio,stdlib
+-lang=c
